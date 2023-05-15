@@ -24,7 +24,13 @@ const AuthorList = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.authors.map((author) => (
+            {props.authors.sort((a, b) => {
+              const nameA = a.name.toUpperCase();
+              const nameB = b.name.toUpperCase();
+              if (nameA < nameB) return -1;
+              if (nameA > nameB) return 1;
+              return 0;
+              }).map((author) => (
               <tr key={author._id}>
                 <td className='align-middle'><Link to={`/${author._id}`}>{author.name}</Link></td>
                 <td className='align-middle'>

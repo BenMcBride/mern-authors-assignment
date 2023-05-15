@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const AuthorUpdate = (props) => {
   const [author, setAuthor] = useState(null);
@@ -48,7 +48,7 @@ const AuthorUpdate = (props) => {
   };
 
   return (
-    author && (
+    author ? (
       <Card className="mb-3">
         <Card.Header>
           <h1>Edit this author:</h1>
@@ -74,7 +74,7 @@ const AuthorUpdate = (props) => {
           </Form>
         </Card.Body>
       </Card>
-    )
+    ) : <Card.Header><h3>We're sorry, but we could not find the author you are looking for. Would you like to add this author to our database?</h3><br/><Link to='/new'>Would you Like to add an Author?</Link></Card.Header>
   );
 };
 export default AuthorUpdate;
